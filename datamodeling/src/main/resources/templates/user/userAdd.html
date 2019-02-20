@@ -5,18 +5,18 @@
 	<body>
 	<header>
 	<div class="container">
-	<h1>BOARD ADD</h1>
+	<h1>회원가입</h1>
 	
 		<form action="/userAdd" method="post" id="userAddForm">
 
-				<table  class="table table-hover text-white">
+				<table>
 				<tr>
 					<th>제목</th>
 					<td><input id="userId" name="userId"/></td>
 				</tr>	
 				<tr>
 					<th>비밀번호</th>
-					<td><input id="userPw" name="userPw" /></td>
+					<td><input id="userPassword" name="userPassword" /></td>
 				</tr>	
 				<tr>
 					<th>이름</th>
@@ -28,15 +28,17 @@
 				</tr>
 				<tr>
 					<th>전화번호</th>
-					<td><input id="boardUser" name="boardUser" /></td>
+					<td><input id="userPhone" name="userPhone" /></td>
 				</tr>
 				<tr>
 					<th>지점코드</th>
-					<td><input id="boardUser" name="boardUser" /></td>
+					<td><input type="radio" id="agencyCode" name="agencyCode" value="agencyCode_1"/>agencyCode_1</td>
+					<td><input type="radio" id="agencyCode" name="agencyCode" value="agencyCode_2"/>agencyCode_2</td>
+					
 				</tr>
 				</table>
-				<input type="submit" value="등록" id="boardAddBtn" class="btn btn-outline btn-xl js-scroll-trigger"/>
-				<span><a href="boardList">돌아가기</a></span>
+				<input type="submit" value="등록" id="" class=""/>
+				<span><a href="index">돌아가기</a></span>
 		</form>
 	</div>
 	</header>

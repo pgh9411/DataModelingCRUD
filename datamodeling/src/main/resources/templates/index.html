@@ -10,6 +10,8 @@
 		<span th:text="${user.userId}"></span>
 		<span>입니다.</span>
 		<span id="logoutBtn"><a th:href="@{/logout}"><button id="logout">LOGOUT</button></a></span>
+		<span id="userAddBtn"><a th:href="@{/userAdd}"><button id="userAdd">회원가입</button></a></span>
+		
 	</div>
 	<div th:unless="${user} != null">
 		<span>로그인 해주세요.</span>

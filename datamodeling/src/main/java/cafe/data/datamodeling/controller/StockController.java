@@ -39,4 +39,17 @@ public class StockController {
 		System.out.println("session 초기화 완료");
 		return "/index";
 	}
+	//get으로 입력받은 userAdd(입력 폼) 실행한다
+	@GetMapping("/userAdd")
+	public String userAdd() {
+		System.out.println("userAdd 폼 요청");
+		return "/user/userAdd";
+		//userAdd로 리턴한다
+	}
+	@PostMapping("/userAdd")
+	public String userAdd(User user) {
+		stockservice.userAdd(user);
+		return "redirect:/userList";
+	}
+	
 }

@@ -13,7 +13,13 @@ public class StockService {
 
 	public User login(User user) {
 		User resultUser= usermapper.login(user);
-		System.out.println("resultUser -> " + resultUser);
+		System.out.println("resultUser  login-> " + resultUser);
+		return resultUser;
+	}
+	
+	public int userAdd(User user) {
+		int resultUser= usermapper.userAdd(user);
+		System.out.println("resultUser  userAdd-> " + resultUser);
 		return resultUser;
 	}
 }
