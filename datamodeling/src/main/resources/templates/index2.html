@@ -1,0 +1,22 @@
+<html xmlns:th='http://www.thymleaf.org'>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 나중에 logoutBtn 유효성 검사 -->
+</head>
+<body>
+	<div th:if="${user} != null">
+		<span>환영합니다! 당신의 아이디는 </span>
+		<span th:text="${user.userId}"></span>
+		<span>입니다.</span>
+		<span id="logoutBtn"><a th:href="@{/logout}"><button id="logout">LOGOUT</button></a></span>
+		
+	</div>
+	<div th:unless="${user} != null">
+		<span>로그인 해주세요.</span>
+		<span><a th:href="@{/login}"><button id="login">LOGIN</button></a></span>
+		<span id="userAddBtn"><a th:href="@{/userAdd}"><button id="userAdd">회원가입</button></a></span>
+		
+	</div>
+</body>
+</html>
