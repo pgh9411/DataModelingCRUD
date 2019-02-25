@@ -9,10 +9,20 @@
 			resultType="cafe.data.datamodeling.vo.User">
 		SELECT
 			user_id AS userId,
-			user_password AS userPassword
+			user_password AS userPassword,
+			agency_code AS agencyCode
 		FROM user
 		WHERE user_id = #{userId}
 		AND user_password = #{userPassword}
+	</select>
+	<select id="agencyCode" 	
+			parameterType="String" 
+			resultType="cafe.data.datamodeling.vo.Agency">
+		SELECT
+			agency_name AS agencyName,
+			agency_user AS agencyUser
+		FROM agency
+		WHERE agency_code = #{agencyCode}
 	</select>
 	<insert id="userAdd"
 			parameterType="cafe.data.datamodeling.vo.User">

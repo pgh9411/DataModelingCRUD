@@ -1,11 +1,18 @@
 package cafe.data.datamodeling.vo;
 
-public class User extends Agency {
+public class User {
 	private String userId;
 	private String userPassword;
 	private String userName;
 	private String userAddr;
 	private String userPhone;
+	private String agencyCode;
+	public String getAgencyCode() {
+		return agencyCode;
+	}
+	public void setAgencyCode(String agencyCode) {
+		this.agencyCode = agencyCode;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -39,8 +46,6 @@ public class User extends Agency {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName + ", userAddr="
-				+ userAddr + ", userPhone=" + userPhone + "]";
+				+ userAddr + ", userPhone=" + userPhone + ", agencyCode=" + agencyCode + "]";
 	}
-	
-	
 }

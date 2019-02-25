@@ -3,7 +3,7 @@ package cafe.data.datamodeling.vo;
 public class Account extends User {
 	private String accountNumber;
 	private String accountName;
-	private int accountdeposit;
+	private int accountDeposit;
 	
 	public String getAccountNumber() {
 		return accountNumber;
@@ -18,15 +18,15 @@ public class Account extends User {
 		this.accountName = accountName;
 	}
 	public int getAccountdeposit() {
-		return accountdeposit;
+		return accountDeposit;
 	}
 	public void setAccountdeposit(int accountdeposit) {
-		this.accountdeposit = accountdeposit;
+		this.accountDeposit = accountdeposit;
 	}
 	@Override
 	public String toString() {
 		return "Account [accountNumber=" + accountNumber + ", accountName=" + accountName + ", accountdeposit="
-				+ accountdeposit + "]";
+				+ accountDeposit + "]";
 	}
 	
 }
