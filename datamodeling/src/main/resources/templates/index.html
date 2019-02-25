@@ -51,7 +51,7 @@
 				<div th:unless="${user} != null">
 					<div class="dropdown-menu dropdown-menu-right"
 						aria-labelledby="userDropdown">
-						<a class="dropdown-item" data-toggle="modal"
+						<a class="dropdown-item" href="#"data-toggle="modal"
 							data-target="#userAddModal">회원가입</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#" data-toggle="modal"
@@ -236,8 +236,18 @@
 					<form th:action="@{/login}" method="post">
 
 
-						아이디 <input id="userId" type="text" name="userId" /> <br>
-						비밀번호 <input id="userPassword" type="password" name="userPassword" /><br>
+						<table>
+							<tr>
+								<th>아이디</th>
+								<td><input id="userId" type="text" name="userId" /></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td><input id="userPassword" type="password"
+									name="userPassword" /></td>
+							</tr>
+
+						</table>
 						<div class="modal-footer">
 							<button class="btn btn-primary" type="button"
 								data-dismiss="modal">Login</button>
