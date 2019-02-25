@@ -1,1 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cafe.data.datamodeling.mapper.OrderMapper">
+	<insert id="orderAdd"
+			parameterType="cafe.data.datamodeling.vo.Order">
+			INSERT 
+			INTO orders(order_day, 
+						order_number, 
+						account_number, 
+						user_id, 
+						order_itemcode,
+						order_count,
+						order_sum) 
+			VALUES(now(),
+					#{orderNumber},
+					#{accountNumber},
+					#{userId},
+					#{orderItemCode},
+					#{orderCount},
+					#{orderSum})
+	</insert>
+</mapper> 

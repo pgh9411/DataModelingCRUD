@@ -1,9 +1,12 @@
 package cafe.data.datamodeling.vo;
 
-public class Account extends User {
+public class Account extends User{
 	private String accountNumber;
 	private String accountName;
 	private int accountDeposit;
+	private String agencyName;
+	private String agencyUser;
+	
 	
 	public String getAccountNumber() {
 		return accountNumber;
@@ -17,16 +20,30 @@ public class Account extends User {
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
 	}
-	public int getAccountdeposit() {
+	public int getAccountDeposit() {
 		return accountDeposit;
 	}
-	public void setAccountdeposit(int accountdeposit) {
-		this.accountDeposit = accountdeposit;
+	public void setAccountDeposit(int accountDeposit) {
+		this.accountDeposit = accountDeposit;
+	}
+	
+	public String getAgencyName() {
+		return agencyName;
+	}
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
+	}
+	public String getAgencyUser() {
+		return agencyUser;
+	}
+	public void setAgencyUser(String agencyUser) {
+		this.agencyUser = agencyUser;
 	}
 	@Override
 	public String toString() {
-		return "Account [accountNumber=" + accountNumber + ", accountName=" + accountName + ", accountdeposit="
-				+ accountDeposit + "]";
+		return "Account [accountNumber=" + accountNumber + ", accountName=" + accountName + ", accountDeposit="
+				+ accountDeposit + ", agencyName=" + agencyName + ", agencyUser=" + agencyUser + "]";
 	}
+	
 	
 }

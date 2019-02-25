@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+
+	</head>
+	<body>
+	<header>
+	<div class="container">
+	<h1>회원가입</h1>
+	
+		<form action="/accountAdd" method="post" id="accountAddForm">
+
+				<table>
+				<tr>
+					<th>계좌번호</th>
+					<td><input id="accountNumber" name="accountNumber"/></td>
+				</tr>	
+				<tr>
+					<th>회원ID</th>
+					<td><input id="userId" name="userId" th:value ="${session.userId}"/></td>
+				</tr>	
+				<tr>
+					<th>계좌명</th>
+					<td><input id="accountName" name="accountName"/></td>
+				</tr>
+				<tr>
+					<th>예수금</th>
+					<td><input id="accountDeposit" name="accountDeposit" /></td>
+				</tr>
+				<tr>
+					<th>게좌계설지점</th>
+					<td><input id="agencyName" name="agencyName" th:value = "${session.agencyName}" /></td>
+				</tr>
+				<tr>
+					<th>계좌담당자</th>
+					<td><input id="agencyUser" name="agencyUser" th:value = "${session.agencyUser}"/></td>
+				</tr>
+				</table>
+				<input type="submit" value="등록" id="" class=""/>
+				<span><a href="index">돌아가기</a></span>
+		</form>
+	</div>
+	</header>
+	</body>
+
+</html>

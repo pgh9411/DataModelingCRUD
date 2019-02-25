@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cafe.data.datamodeling.mapper.AccountMapper;
+import cafe.data.datamodeling.mapper.OrderMapper;
 import cafe.data.datamodeling.mapper.UserMapper;
 import cafe.data.datamodeling.vo.Account;
 import cafe.data.datamodeling.vo.Agency;
+import cafe.data.datamodeling.vo.Order;
 import cafe.data.datamodeling.vo.User;
 
 @Service
@@ -15,7 +17,9 @@ public class StockService {
 	private UserMapper usermapper;
 	@Autowired
 	private AccountMapper accountmapper;
-
+	@Autowired
+	private OrderMapper ordermapper;
+	
 	public User login(User user) {
 		User resultUser= usermapper.login(user);
 		System.out.println("resultUser  login-> " + resultUser);
@@ -34,6 +38,11 @@ public class StockService {
 	public int accountAdd(Account account) {
 		int resultAccount = accountmapper.accountAdd(account);
 		System.out.println("resultAccount  accountAdd-> " + resultAccount);
+		return 0;
+	}
+	public int orderAdd(Order order) {
+		int resultOrder = ordermapper.orderAdd(order);
+		System.out.println("resultOrder  orderAdd-> " + resultOrder);
 		return 0;
 	}
 }
