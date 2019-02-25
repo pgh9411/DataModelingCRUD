@@ -23,4 +23,7 @@
 					#{orderCount},
 					#{orderSum})
 	</insert>
+	
+
+
 </mapper> 

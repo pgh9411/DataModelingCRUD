@@ -1,5 +1,7 @@
 package cafe.data.datamodeling.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import cafe.data.datamodeling.service.StockService;
 import cafe.data.datamodeling.vo.Account;
@@ -26,17 +29,17 @@ public class StockController {
 	//login화면 출력(테스트용)
 	@GetMapping("login")
 	public String login() {
-		return "login";
+		return "index";
 	}
 	//login입력처리
 	@PostMapping("login")
 	//로그인기능 agencyCode확인기능 구현
-	public String login(HttpSession session,Model model,User user) {
+	public String login(HttpSession session,User user) {
 		//로그인성공시 받아오는 값을 resultUser객체에 담아준다. 
 		User resultUser = stockservice.login(user);
 		System.out.println("resultUser 확인용-> " + resultUser);
-		//resultUser객체에 받아온 값을 model영역에 user객체에 담는다.
-		model.addAttribute("user", resultUser);
+		//resultUser객체에 받아온 값을 session영역에 user객체에 담는다.
+		session.setAttribute("user", resultUser);
 		//user객체내에 담겨있는 UserId값을 가져와 session영역에 userId에 담는다.
 		session.setAttribute("userId", user.getUserId());
 		System.out.println("getAgencyCode() 확인용"+resultUser.getAgencyCode());
@@ -78,7 +81,7 @@ public class StockController {
 		//accountAdd로 리턴한다.
 	}
 	@PostMapping("/accountAdd")
-	public String accountAdd(Account account) {
+	public String accountAdd(HttpSession session, Account account) {
 		System.out.println("accountAdd 액션 요청");
 		stockservice.accountAdd(account);
 		return "redirect:/userAdd";
@@ -94,5 +97,14 @@ public class StockController {
 		stockservice.orderAdd(order);
 		
 		return "redirect:/orderAdd";
+	}
+	@GetMapping("/accountList")
+	public String accountList(HttpSession session,Model model) {
+		String userID = (String)session.getAttribute("userId");
+		System.out.println("실행확인.....accountList");
+		List<Account> accountList = stockservice.accountList(userID);
+		System.out.println("accountList -> " + accountList);
+		model.addAttribute("modelAccountList",accountList);
+		return "/account/accountList";
 	}
 }

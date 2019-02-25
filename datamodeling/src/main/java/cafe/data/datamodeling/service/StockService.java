@@ -1,7 +1,10 @@
 package cafe.data.datamodeling.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import cafe.data.datamodeling.mapper.AccountMapper;
 import cafe.data.datamodeling.mapper.OrderMapper;
@@ -40,9 +43,15 @@ public class StockService {
 		System.out.println("resultAccount  accountAdd-> " + resultAccount);
 		return 0;
 	}
+	public List<Account> accountList(String userId) {
+		List<Account> accountList = accountmapper.accountAllSelect(userId);
+		System.out.println("accountList -> " + accountList);
+		return accountList;
+	}
 	public int orderAdd(Order order) {
 		int resultOrder = ordermapper.orderAdd(order);
 		System.out.println("resultOrder  orderAdd-> " + resultOrder);
 		return 0;
 	}
+
 }

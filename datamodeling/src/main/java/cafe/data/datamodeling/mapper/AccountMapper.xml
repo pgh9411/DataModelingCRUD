@@ -20,4 +20,15 @@
 					#{agencyName},
 					#{agencyUser})
 	</insert>
+	<select id="accountAllSelect" resultType="cafe.data.datamodeling.vo.Account">
+		SELECT
+			account_number AS accountNumber,
+			account_name AS accountName,
+			account_deposit AS accountDeposit,
+			agency_name AS agencyName,
+			agency_user AS agencyUser
+		FROM account
+		WHERE user_id = #{userId}
+		
+	</select>
 </mapper> 
