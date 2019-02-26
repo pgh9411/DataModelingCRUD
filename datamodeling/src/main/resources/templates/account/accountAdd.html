@@ -29,13 +29,7 @@
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-		<a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
-
-		<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
-			id="sidebarToggle" href="#">
-			<i class="fas fa-bars"></i>
-		</button>
-
+		<a class="navbar-brand mr-1" href="index">이다은 BANK</a>
 		<!-- Navbar -->
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown no-arrow"><a
@@ -65,29 +59,25 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul class="sidebar navbar-nav">
-			<li class="nav-item active"><a class="nav-link"
-				href="accountAdd"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>계좌등록</span>
-			</a></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="orderAdd" id="pagesDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>Pages</span>
-			</a>
-				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">Login Screens:</h6>
-					<a class="dropdown-item" href="orderAdd">계좌1 주문등록</a> <a
-						class="dropdown-item" href="accountList">계좌조회</a> <a
-						class="dropdown-item" href="forgot-password.html">Forgot
-						Password</a>
-					<div class="dropdown-divider"></div>
-					<h6 class="dropdown-header">Other Pages:</h6>
-					<a class="dropdown-item" href="404.html">404 Page</a> <a
-						class="dropdown-item" href="blank.html">Blank Page</a>
-				</div></li>
-
-		</ul>
-
+		<div th:if="${session.user} != null">
+			<ul class="sidebar navbar-nav">
+				<li class="nav-item active"><a class="nav-link"
+					href="/accountAdd"> <i class="fas fa-fw fa-tachometer-alt"></i>
+						<span>계좌등록</span>
+				</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="orderAdd" id="pagesDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>조회</span>
+				</a>
+					<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+						<h6 class="dropdown-header">계좌</h6>
+						<a class="dropdown-item" href="accountList">계좌조회</a>
+						<h6 class="dropdown-header">주문</h6>
+						<a class="dropdown-item" href="orderList">주문조회</a>
+					</div></li>
+			</ul>
+		</div>
 		<div id="content-wrapper">
 
 			<div class="container-fluid">
@@ -161,10 +151,10 @@
 								<div class="card-body-icon">
 									<i class="fas fa-fw fa-list"></i>
 								</div>
-								<div class="mr-5">11 New Tasks!</div>
+								<div class="mr-5">계좌등록리스트보기</div>
 							</div>
-							<a class="card-footer text-white clearfix small z-1" href="#">
-								<span class="float-left">View Details</span> <span
+							<a class="card-footer text-white clearfix small z-1" href="accountList">
+								<span class="float-left">이동</span> <span
 								class="float-right"> <i class="fas fa-angle-right"></i>
 							</span>
 							</a>
@@ -201,38 +191,6 @@
 						</div>
 					</div>
 				</div>
-
-				<!-- Area Chart Example-->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-chart-area"></i> Area Chart Example
-					</div>
-					<div class="card-body">
-						<canvas id="myAreaChart" width="100%" height="30"></canvas>
-					</div>
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
-				</div>
-
-				<!-- DataTables Example -->
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-table"></i> Data Table Example
-					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
-								cellspacing="0">
-								<thead>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div class="card-footer small text-muted">Updated yesterday
-						at 11:59 PM</div>
-				</div>
-
-			</div>
 			<!-- /.container-fluid -->
 
 			<!-- Sticky Footer -->
@@ -261,7 +219,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Login Form</h5>
+					<h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
@@ -269,31 +227,15 @@
 				</div>
 				<div class="modal-body">
 					<form th:action="@{/login}" method="post">
-
-
-						<table>
-							<tr>
-								<th>아이디</th>
-								<td><input id="userId" type="text" name="userId" /></td>
-							</tr>
-							<tr>
-								<th>비밀번호</th>
-								<td><input id="userPassword" type="password"
-									name="userPassword" /></td>
-							</tr>
-
-						</table>
-						<div class="modal-footer">
-							<button class="btn btn-primary" type="button"
-								data-dismiss="modal">Login</button>
-							<input type="submit" value="등록" id="" class=""/>	
-							<a class="btn btn-secondary" href="index">cancel</a>
-						</div>
-
-					</form>
-
+						아이디 : <input type="text" class="form-control" name="userId"><br>
+						비밀번호 : <input type="password" class="form-control" name="userPassword"><br>
 				</div>
-
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary" th:value="로그인">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

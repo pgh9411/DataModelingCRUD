@@ -84,19 +84,21 @@ public class StockController {
 	public String accountAdd(HttpSession session, Account account) {
 		System.out.println("accountAdd 액션 요청");
 		stockservice.accountAdd(account);
-		return "redirect:/userAdd";
+
+		return "redirect:/accountList";
 	}
 	@GetMapping("/orderAdd")
-	public String orderAdd() {
+	public String orderAdd(Account account,HttpSession session) {
 		System.out.println("orderAdd 폼 요청");
+		session.setAttribute("accountNumber", account.getAccountNumber());
+		System.out.println("accountNumber 확인");
 		return "/order/orderAdd";
 	}
 	@PostMapping("/orderAdd")
 	public String orderAdd(Order order) {
 		System.out.println("orderAdd 액숀 요청");
 		stockservice.orderAdd(order);
-		
-		return "redirect:/orderAdd";
+		return "redirect:/orderList";
 	}
 	@GetMapping("/accountList")
 	public String accountList(HttpSession session,Model model) {
@@ -105,6 +107,17 @@ public class StockController {
 		List<Account> accountList = stockservice.accountList(userID);
 		System.out.println("accountList -> " + accountList);
 		model.addAttribute("modelAccountList",accountList);
+
 		return "/account/accountList";
 	}
+	@GetMapping("/orderList")
+	public String orderList(HttpSession session,Model model) {
+		String userID = (String)session.getAttribute("userId");
+		System.out.println("실행확인.....accountList");
+		List<Order> orderList = stockservice.orderList(userID);
+		System.out.println("orderList -> " + orderList);
+		model.addAttribute("modelOrderList",orderList);
+
+		return "/order/orderList";
+}
 }

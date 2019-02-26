@@ -23,7 +23,19 @@
 					#{orderCount},
 					#{orderSum})
 	</insert>
-	
+	<select id="orderAllSelect" resultType="cafe.data.datamodeling.vo.Order">
+		SELECT
+			order_day AS orderDay,
+			order_number AS orderNumber,
+			account_number AS accountNumber,
+			user_id AS userId,
+			order_itemcode AS orderItemCode,
+			order_count AS orderCount,
+			order_sum AS orderSum
+		FROM orders
+		WHERE user_id = #{userId}
+		
+	</select>
 
 
 </mapper> 

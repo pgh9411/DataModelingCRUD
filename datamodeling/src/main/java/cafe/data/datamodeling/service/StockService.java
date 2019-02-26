@@ -23,6 +23,7 @@ public class StockService {
 	@Autowired
 	private OrderMapper ordermapper;
 	
+	
 	public User login(User user) {
 		User resultUser= usermapper.login(user);
 		System.out.println("resultUser  login-> " + resultUser);
@@ -52,6 +53,11 @@ public class StockService {
 		int resultOrder = ordermapper.orderAdd(order);
 		System.out.println("resultOrder  orderAdd-> " + resultOrder);
 		return 0;
+	}
+	public List<Order> orderList(String userId) {
+		List<Order> orderList = ordermapper.orderAllSelect(userId);
+		System.out.println("orderList -> " + orderList);
+		return orderList;
 	}
 
 }

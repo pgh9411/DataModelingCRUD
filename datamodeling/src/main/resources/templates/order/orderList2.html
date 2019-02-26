@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+</head>
+<body>
+<header class="masthead">
+<div class="container">
+	<h1>ORDER LIST</h1>
+
+
+
+	<table>
+		<thead>
+			<tr>
+				<th>주문일자</th>
+				<th>주문번호</th>
+				<th>계좌번호</th>
+				<th>회원ID</th>
+				<th>종목코드</th>
+				<th>수량</th>
+				<th>금액</th>
+					
+			</tr>
+		</thead>
+
+
+		<tr th:each="b : ${map.get('list')}">
+			<td th:text="${b.boardNo}" ></td>
+			<td>
+				<a th:href="@{/boardDetail(boardNo=${b.boardNo}, currentPage=${currentPage})}"> 
+				<th:block th:text="${b.boardTitle}"></th:block>
+				</a>
+			</td>
+			<td th:text="${b.boardUser}"></td>
+			<td th:text="${b.boardDate}"></td>
+			
+			
+		</tr>
+
+
+	</table>
+	
+	
+	<form>
+		<tr>
+			<td th:if="${currentPage > 1}">
+			<a th:href="@{/boardList(currentPage=1)}" class="btn btn-outline btn-xl js-scroll-trigger">처음</a>
+			<a th:href="@{/boardList(currentPage=${currentPage - 1})}">이전</a>
+			</td>
+			<td th:if="${currentPage < map.lastPage}">
+			<a th:href="@{/boardList(currentPage=${currentPage + 1})}">다음</a>
+			<a th:href="@{/boardList(currentPage=${map.lastPage})}" class="btn btn-outline btn-xl js-scroll-trigger">끝</a>
+			</td>
+		</tr>
+	</form>
+	
+	<a href="boardAdd" class="btn btn-outline btn js-scroll-trigger">게시글 입력</a>
+	</div>
+</header>	
+
+</body>
+</html>
