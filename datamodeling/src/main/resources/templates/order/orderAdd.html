@@ -2,6 +2,7 @@
 <html lang="en">
 <html xmlns:th='http://www.thymleaf.org'>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin - Dashboard</title>
+<title>이다은 BANK</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -24,7 +25,22 @@
 <link href="css/sb-admin.css" rel="stylesheet">
 
 </head>
-
+<script>
+	$(document).ready(function(){
+		$('#login').click(function(){
+			if($('#userId2').val() == ""){
+				$('#userIdin').text('아이디를 입력해주세요');
+				$('#userId2').focus();
+			}else if($('#userPassword').val() == ""){
+				$('#userIdin').text('');
+				$('#userPasswordin').text('비밀번호를 입력하세요');
+				$('#userPassword').focus();
+			}else{
+				$('#form').submit();
+			}
+		});
+	});
+</script>
 <body id="page-top">
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -37,9 +53,9 @@
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <i class="fas fa-user-circle fa-fw"></i>
 			</a>
-				<div th:if="${session.user} != null">
-					<span>환영합니다! 당신의 아이디는 </span> <span th:text="${session.userId}"></span>
-					<span>입니다.</span> <span id="logoutBtn"><a
+				<div class="text-white" th:if="${session.user} != null">
+					<span>환영합니다! </span> <span th:text="${session.userId}"></span>
+					<span>고객님</span> <span id="logoutBtn"><a
 						th:href="@{/logout}"><button id="logout">LOGOUT</button></a></span>
 				</div>
 				<div th:unless="${session.user} != null">
@@ -84,8 +100,8 @@
 
 				<!-- Breadcrumbs-->
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-					<li class="breadcrumb-item active">Overview</li>
+					<li class="breadcrumb-item"><a href="orderAdd">주문등록</a></li>
+					<li class="breadcrumb-item active">페이지</li>
 				</ol>
 
 				<!-- Icon Cards-->
@@ -113,8 +129,8 @@
 								</div>
 								<div class="mr-5">계좌등록리스트보기</div>
 							</div>
-							<a class="card-footer text-white clearfix small z-1" href="accountList">
-								<span class="float-left">이동</span> <span
+							<a class="card-footer text-white clearfix small z-1"
+								href="accountList"> <span class="float-left">이동</span> <span
 								class="float-right"> <i class="fas fa-angle-right"></i>
 							</span>
 							</a>
@@ -126,7 +142,7 @@
 								<div class="card-body-icon">
 									<i class="fas fa-fw fa-shopping-cart"></i>
 								</div>
-								<div class="mr-5">ORDER</div>
+
 								<body>
 									<header>
 										<div class="container">
@@ -173,7 +189,9 @@
 														<td><input id="orderSum" name="orderSum" /></td>
 													</tr>
 												</table>
-												<input type="submit" value="등록" id="" class="" />
+												<input type="submit" class="btn btn-warning" value="등록" />
+												<span><a
+													class="btn btn-warning" href="accountList">돌아가기</a></span>
 											</form>
 										</div>
 									</header>
@@ -185,161 +203,137 @@
 						<div class="card text-white bg-danger o-hidden h-100">
 							<div class="card-body">
 								<div class="card-body-icon">
-									<i class="fas fa-fw fa-life-ring"></i>
+									<i class="fas fa-fw fa-list"></i>
 								</div>
 								<div class="mr-5">주문등록리스트보기</div>
 							</div>
-							<a class="card-footer text-white clearfix small z-1" href="orderList">
-								<span class="float-left">이동</span> <span
+							<a class="card-footer text-white clearfix small z-1"
+								href="orderList"> <span class="float-left">이동</span> <span
 								class="float-right"> <i class="fas fa-angle-right"></i>
 							</span>
 							</a>
-							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /.container-fluid -->
-
-				<!-- Sticky Footer -->
-				<footer class="sticky-footer">
-					<div class="container my-auto">
-						<div class="copyright text-center my-auto">
-							<span>Copyright © Your Website 2019</span>
-						</div>
-					</div>
-				</footer>
-
 			</div>
-			<!-- /.content-wrapper -->
+			<!-- /.container-fluid -->
+
+			<!-- Sticky Footer -->
+			<footer class="sticky-footer">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright © Your Website 2019</span>
+					</div>
+				</div>
+			</footer>
 
 		</div>
-		<!-- /#wrapper -->
+		<!-- /.content-wrapper -->
 
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fas fa-angle-up"></i>
-		</a>
+	</div>
+	<!-- /#wrapper -->
 
-		<!-- Login Modal-->
-		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Login Form</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form th:action="@{/login}" method="post">
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Login Modal-->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/login}" method="post" id="form">
+						아이디 : <input type="text" class="form-control" name="userId" id="userId2">
+						<span id="userIdin"> </span><br>
+						비밀번호 : <input type="password" class="form-control"
+							name="userPassword" id="userPassword"><span id="userPasswordin"> </span><br>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-primary" id="login" th:value="로그인">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- userAdd(회원가입) Modal-->
+	<div class="modal fade" id="userAddModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">UserAddForm</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<form action="/userAdd" method="post" id="userAddForm">
 
 
-							<table>
-								<tr>
-									<th>아이디</th>
-									<td><input id="userId" type="text" name="userId" /></td>
-								</tr>
-								<tr>
-									<th>비밀번호</th>
-									<td><input id="userPassword" type="password"
-										name="userPassword" /></td>
-								</tr>
 
-							</table>
+							아이디 <input id="userId" name="userId" class="form-control" /> 비밀번호
+							<input id="userPassword" name="userPassword" class="form-control" />
+
+							이름 <input id="userName" name="userName" class="form-control" />
+
+							주소 <input id="userAddr" name="userAddr" class="form-control" />
+
+							전화번호 <input id="userPhone" name="userPhone" class="form-control" />
+
+							<tr>
+								<th>지점코드</th>
+								<br>
+								<td><input type="radio" id="agencyCode" name="agencyCode"
+									value="agencyCode_1" />agencyCode_1</td>
+								<td><input type="radio" id="agencyCode" name="agencyCode"
+									value="agencyCode_2" />agencyCode_2</td>
+
+							</tr>
+
 							<div class="modal-footer">
-								<button class="btn btn-primary" type="button"
-									data-dismiss="modal">Login</button>
-								<input type="submit" value="등록" id="" class="" /> <a
-									class="btn btn-secondary" href="index">cancel</a>
+
+								<input type="submit" class="btn btn-primary" th:value="등록">
+								<span><a class="btn btn-secondary" href="index">돌아가기</a></span>
 							</div>
-
 						</form>
-
 					</div>
 
 				</div>
+
 			</div>
 		</div>
-		<!-- userAdd(회원가입) Modal-->
-		<div class="modal fade" id="userAddModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">UserAddForm</h5>
-						<button class="close" type="button" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="container">
-							<form action="/userAdd" method="post" id="userAddForm">
+	</div>
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-								<table>
-									<tr>
-										<th>제목</th>
-										<td><input id="userId" name="userId" /></td>
-									</tr>
-									<tr>
-										<th>비밀번호</th>
-										<td><input id="userPassword" name="userPassword" /></td>
-									</tr>
-									<tr>
-										<th>이름</th>
-										<td><input id="userName" name="userName" /></td>
-									</tr>
-									<tr>
-										<th>주소</th>
-										<td><input id="userAddr" name="userAddr" /></td>
-									</tr>
-									<tr>
-										<th>전화번호</th>
-										<td><input id="userPhone" name="userPhone" /></td>
-									</tr>
-									<tr>
-										<th>지점코드</th>
-										<td><input type="radio" id="agencyCode" name="agencyCode"
-											value="agencyCode_1" />agencyCode_1</td>
-										<td><input type="radio" id="agencyCode" name="agencyCode"
-											value="agencyCode_2" />agencyCode_2</td>
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-									</tr>
-								</table>
-								<div class="modal-footer">
-									<button class="btn btn-primary" type="button"
-										data-dismiss="modal">등록</button>
-									<input type="submit" value="등록" id="" class="" /> <span><a
-										class="btn btn-secondary" href="index">돌아가기</a></span>
-								</div>
-							</form>
-						</div>
+	<!-- Page level plugin JavaScript-->
+	<script src="vendor/chart.js/Chart.min.js"></script>
+	<script src="vendor/datatables/jquery.dataTables.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
-					</div>
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin.min.js"></script>
 
-				</div>
-			</div>
-		</div>
-		<!-- Bootstrap core JavaScript-->
-		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-		<!-- Core plugin JavaScript-->
-		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-		<!-- Page level plugin JavaScript-->
-		<script src="vendor/chart.js/Chart.min.js"></script>
-		<script src="vendor/datatables/jquery.dataTables.js"></script>
-		<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
-
-		<!-- Custom scripts for all pages-->
-		<script src="js/sb-admin.min.js"></script>
-
-		<!-- Demo scripts for this page-->
-		<script src="js/demo/datatables-demo.js"></script>
-		<script src="js/demo/chart-area-demo.js"></script>
+	<!-- Demo scripts for this page-->
+	<script src="js/demo/datatables-demo.js"></script>
+	<script src="js/demo/chart-area-demo.js"></script>
 </body>
 
 </html>

@@ -71,7 +71,7 @@ public class StockController {
 	@PostMapping("/userAdd")
 	public String userAdd(User user) {
 		stockservice.userAdd(user);
-		return "redirect:/userList";
+		return "redirect:/index";
 	}
 	//get으로 입력받은 accountADD(입력 폼) 실행한다
 	@GetMapping("/accountAdd")
