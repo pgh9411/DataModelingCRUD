@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>이다은 BANK</title>
+<title th:text="${session.userId}"></title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -28,9 +28,10 @@
 <script>
 	$(document).ready(function(){
 		$('#login').click(function(){
-			if($('#userId').val() == ""){
+			if($('#userId2').val() == ""){
 				$('#userIdin').text('아이디를 입력해주세요');
-				$('#userId').focus();
+				$('#userPasswordin').text('');
+				$('#userId2').focus();
 			}else if($('#userPassword').val() == ""){
 				$('#userIdin').text('');
 				$('#userPasswordin').text('비밀번호를 입력하세요');
@@ -40,12 +41,60 @@
 			}
 		});
 	});
+	$(document).ready(function(){
+		$('#insert').click(function(){
+			if($('#userIdInsert').val()== ""){
+				$('#userIdInsert2').text('아이디를 입력해주세요.');
+				$('#userPasswordInsert2').text('');
+				$('#userNameInsert2').text('');
+				$('#userAddrInsert2').text('');
+				$('#userPhoneInsert2').text('');
+				$('#userIdInsert').focus();
+			}else if($('#userPasswordInsert').val().length < 4){
+				$('#userIdInsert2').text('.');
+				$('#userPasswordInsert2').text('비밀번호를 4자리이상 입력하세요.');
+				$('#userNameInsert2').text('');
+				$('#userAddrInsert2').text('');
+				$('#userPhoneInsert2').text('');
+				$('#userPasswordInsert').focus();
+			}else if($('#userNameInsert').val() == ""){
+				$('#userIdInsert2').text('');
+				$('#userPasswordInsert2').text('');
+				$('#userNameInsert2').text('이름을 입력하세요.');
+				$('#userAddrInsert2').text('');
+				$('#userPhoneInsert2').text('');
+				$('#userNameInsert').focus();
+			}else if($('#userAddrInsert').val() == ""){
+				$('#userIdInsert2').text('');
+				$('#userPasswordInsert2').text('');
+				$('#userNameInsert2').text('');
+				$('#userAddrInsert2').text('주소를 입력하세요.');
+				$('#userPhoneInsert2').text('');
+				$('#userAddrInsert').focus();
+			}else if($('#userPhoneInsert').val() == ""){
+				$('#userIdInsert2').text('');
+				$('#userPasswordInsert2').text('');
+				$('#userNameInsert2').text('');
+				$('#userAddrInsert2').text('');
+				$('#userPhoneInsert2').text('핸드폰 번호를 입력해주세요.');
+				$('#userPhoneInsert').focus();
+			}else{
+				$('#userAddForm').submit();
+			}
+			
+		});
+	});
 </script>
 <body id="page-top">
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-		<a class="navbar-brand mr-1" href="index">이다은 BANK</a>		
+		<a class="navbar-brand mr-1" href="index"><span th:text="${session.userId}"></span>&nbsp;BANK</a>
+		<form
+			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+			<div class="input-group">
+			</div>
+		</form>
 		<!-- Navbar -->
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown no-arrow"><a
@@ -240,7 +289,7 @@
 				</div>
 				<div class="modal-body">
 					<form th:action="@{/login}" method="post" id="form">
-						아이디 : <input type="text" class="form-control" name="userId" id="userId">
+						아이디 : <input type="text" class="form-control" name="userId" id="userId2">
 						<span id="userIdin"> </span><br>
 						비밀번호 : <input type="password" class="form-control"
 							name="userPassword" id="userPassword"><span id="userPasswordin"> </span><br>
@@ -268,25 +317,17 @@
 				</div>
 				<div class="modal-body">
 					<div class="container">
-						<form action="/userAdd" method="post" id="userAddForm">
-
-							
-								
+						<form action="/userAdd" method="post" id="userAddForm">	
 									아이디
-									<input id="userId" name="userId"  class="form-control"/>
-								
+									<input id="userIdInsert" name="userId"  class="form-control"/><span id="userIdInsert2"></span><br><br>
 									비밀번호
-									<input id="userPassword" name="userPassword" class="form-control"/>
-								
+									<input id="userPasswordInsert" name="userPassword" class="form-control"/><span id="userPasswordInsert2"></span><br><br>
 									이름
-									<input id="userName" name="userName" class="form-control"/>
-								
+									<input id="userNameInsert" name="userName" class="form-control"/><span id="userNameInsert2"></span><br><br>
 									주소
-									<input id="userAddr" name="userAddr" class="form-control"/>
-								
+									<input id="userAddrInsert" name="userAddr" class="form-control"/><span id="userAddrInsert2"></span><br><br>
 									전화번호
-									<input id="userPhone" name="userPhone" class="form-control"/>
-								
+									<input id="userPhoneInsert" name="userPhone" class="form-control"/><span id="userPhoneInsert2"></span><br><br>
 								<tr>
 									<th>지점코드</th><br>
 									<td><input type="radio" id="agencyCode" name="agencyCode"
@@ -298,7 +339,7 @@
 							
 							<div class="modal-footer">
 									
-								<input type="submit" class="btn btn-primary" th:value="등록" > 
+								<input type="button" class="btn btn-primary" id = "insert" th:value="등록" > 
 								<span><a
 									class="btn btn-secondary" href="index">돌아가기</a></span>
 							</div>

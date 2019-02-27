@@ -61,7 +61,7 @@ public class StockController {
 		System.out.println("session 초기화 완료");
 		return "/index";
 	}
-	//get으로 입력받은 userAdd(입력 폼) 실행한다
+	//get으로 입력받은 userAdd(입력 폼) 실행한다(화면 테스트용)
 	@GetMapping("/userAdd")
 	public String userAdd() {
 		System.out.println("userAdd 폼 요청");
@@ -73,13 +73,14 @@ public class StockController {
 		stockservice.userAdd(user);
 		return "redirect:/index";
 	}
-	//get으로 입력받은 accountADD(입력 폼) 실행한다
+	//get으로 입력받은 accountADD(입력 폼) 실행한다 (화면 테스트용)
 	@GetMapping("/accountAdd")
 	public String accountAdd() {
 		System.out.println("accountAdd 폼 요청");
 		return "/account/accountAdd";
 		//accountAdd로 리턴한다.
 	}
+	
 	@PostMapping("/accountAdd")
 	public String accountAdd(HttpSession session, Account account) {
 		System.out.println("accountAdd 액션 요청");
